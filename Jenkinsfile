@@ -27,7 +27,7 @@ pipeline {
     stage('Validate') {
       steps {
         container('tkn') {
-          sh 'tkn version'
+          sh 'tkn version -n tekton-pipelines'
         }
       }
     }
