@@ -32,10 +32,10 @@ pipeline {
     stage('Validate') {
       steps {
         container('kubectl') {
-          sh 'kubectl get pods'
+          sh 'kubectl apply -f task.yaml -n tekton-pipelines'
         }
         container('tkn') {
-          sh 'tkn version -n tekton-pipelines'
+          sh 'tkn task describe echo-hello-world'
         }
       }
     }
