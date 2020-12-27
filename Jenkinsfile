@@ -8,6 +8,11 @@ spec:
     command:
     - cat
     tty: true
+  - name: kubectl
+    image: bitnami/kubectl:1.17.16
+    command:
+    - cat
+    tty: true
 """
 
 pipeline {
@@ -26,6 +31,9 @@ pipeline {
   stages {
     stage('Validate') {
       steps {
+        container('kubectl') {
+          sh 'kubectl get pods'
+        }
         container('tkn') {
           sh 'tkn version -n tekton-pipelines'
         }
