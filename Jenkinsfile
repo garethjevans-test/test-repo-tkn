@@ -29,7 +29,7 @@ pipeline {
       steps {
         container('tkn') {
           sh 'kubectl apply -f task.yaml -n tekton-pipelines'
-          sh 'tkn task describe echo-hello-world'
+          sh 'tkn task describe echo-hello-world -n tekton-pipelines'
         }
       }
     }
