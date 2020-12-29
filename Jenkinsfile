@@ -8,6 +8,7 @@ spec:
     command:
     - cat
     tty: true
+  serviceAccountName: tekton-sa  
 """
 
 pipeline {
