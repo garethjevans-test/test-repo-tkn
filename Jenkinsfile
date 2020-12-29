@@ -31,6 +31,7 @@ pipeline {
           sh 'kubectl apply -f task.yaml -n tekton-pipelines'
           sh 'kubectl apply -f taskrun.yaml -n tekton-pipelines'
           sh 'tkn task describe echo-hello-world -n tekton-pipelines'
+          sh 'tkn taskrun logs -f echo-hello-world-task-run'
         }
       }
     }
