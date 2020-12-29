@@ -4,12 +4,7 @@ kind: Pod
 spec:
   containers:
   - name: tkn
-    image: garethjevans/tkn:0.15.0
-    command:
-    - cat
-    tty: true
-  - name: kubectl
-    image: bitnami/kubectl:1.17.16
+    image: garethjevans/tkn:0.15.1
     command:
     - cat
     tty: true
@@ -31,10 +26,8 @@ pipeline {
   stages {
     stage('Validate') {
       steps {
-        container('kubectl') {
-          sh 'kubectl apply -f task.yaml -n tekton-pipelines'
-        }
         container('tkn') {
+          sh 'kubectl apply -f task.yaml -n tekton-pipelines'
           sh 'tkn task describe echo-hello-world'
         }
       }
@@ -48,10 +41,6 @@ pipeline {
     //        pullRequest.comment('```\n' + plan)
     //      }
     //    }
-    //    // jnlp has a shell available
-    //    sh 'curl --silent --location --show-error --output tfsec https://github.com/tfsec/tfsec/releases/download/v0.36.9/tfsec-linux-amd64'
-    //    sh 'chmod a+x tfsec'
-    //    sh './tfsec'
     //  }
     //}
   }
