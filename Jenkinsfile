@@ -28,7 +28,7 @@ pipeline {
     stage('Validate') {
       steps {
         container('tkn') {
-          sh 'kubectl apply -f .tekton/* -n tekton-pipelines'
+          sh 'kubectl apply -k .tekton -n tekton-pipelines'
           sh 'tkn task describe echo-hello-world -n tekton-pipelines'
           sh 'tkn taskrun logs -f echo-hello-world-task-run -n tekton-pipelines'
         }
